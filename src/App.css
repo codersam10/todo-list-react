@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+#root {
+  background-color: hsl(0, 0%, 86%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items:start;
+  padding: 1.5rem;
+  min-height: 100svh;
+}
+
+.container {
+  background-color: hsl(219, 6%, 44%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 50%;
+  text-align: center;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+h1 {
+  color: hsl(220, 8%, 23%);
+  font-weight: 400;
+  font-style: normal;
+}
+
+#input-box {
+  min-width: 0;
+  flex-grow: 1;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  border: none;
+  font-size: inherit;
+  word-break: break-all;
+
+}
+
+.add-btn {
+  text-align: center;
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  background-color: hsl(26, 100%, 43%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: none;
+  border-radius: 50px;
+  border: none;
+  font-size: inherit;
+}
+
+.add-btn:active {
+  background-color: hsl(26, 100%, 40%);
+}
+.list-container{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  word-break: break-all;
+  background-color: hsl(220, 8%, 23%);
+  list-style: none;
+  color: hsl(0, 0%, 100%);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.list-item span:hover{
+ color: hsl(0, 100%, 70%);
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    width: 100%;
+    margin: 3rem;
+  }
+}
