@@ -12,7 +12,6 @@ const TodoInput = ({ addToList }) => {
     }
   };
 
-
   return (
     <div>
       <h1>Todo List</h1>
@@ -26,14 +25,15 @@ const TodoInput = ({ addToList }) => {
           placeholder="Enter task"
         />
         <button
+          className="add-btn"
           onClick={(e) => {
             addToList(inputText);
             setInputText("");
           }}
           type="button"
-          className="add-btn"
+          aria-label="Add task"
         >
-          <i class="fa-solid fa-plus"></i>
+          <i className="fa-solid fa-plus"></i>
         </button>
       </div>
     </div>

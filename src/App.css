@@ -21,7 +21,7 @@
   background-color: hsl(219, 6%, 44%);
   border-radius: 1rem;
   padding: 1.5rem;
-  width: 50%;
+  width: 55%;
   text-align: center;
 }
 
@@ -84,18 +84,58 @@ h1 {
   padding: 0.5rem 1rem;
 }
 
-.list-text{
+.list-text-container {
+  flex-grow: 1;
+  display: flex;
+}
+
+.list-text {
   flex-grow: 1;
   text-align: left;
 }
+.task-completed-text {
+  display: grid;
+  place-content: center;
+  text-wrap: nowrap;
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: hsl(113, 97%, 35%);
+}
 
-.delete-icon :hover {
+.delete-icon-wrapper {
+  width: 2rem;
+  height: 2rem;
+  padding: auto;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  background-color: hsl(0, 0%, 50%);
+  border-radius: 50%;
+}
+
+.delete-icon {
+  color: hsl(0, 0%, 100%);
+}
+
+.delete-icon-wrapper:hover > .delete-icon {
   color: hsl(0, 100%, 70%);
 }
 
+.delete-icon-wrapper:hover{
+  background-color: hsl(0, 0%, 85%);
+}
+
+/* small screens */
 @media screen and (max-width: 700px) {
   .container {
-    width: 100%;
-    margin: 3rem;
+    width: 100%
   }
 }
+
+/* mediun screens */
+@media screen and (max-width: 769px) {
+  .container {
+    width: 100%
+  }
+}
+

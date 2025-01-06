@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import TodoInput from "./components/TodoInput";
 import TodoListItem from "./components/TodoListItem";
 import { Flip, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { v4 } from "uuid";
 
 const App = () => {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState(
+    JSON.parse(localStorage.getItem("todoList")) || []
+  );
   const addToList = (listItem) => {
     listItem === ""
       ? toast.warn("Please enter a task!", {
@@ -19,24 +22,42 @@ const App = () => {
           theme: "light",
           transition: Flip,
         })
-      : setTodoList((oldTasks) => [...oldTasks, listItem]);
+      : setTodoList((oldTasks) => [
+          ...oldTasks,
+          { id: v4(), text: listItem, isCompleted: false },
+        ]);
   };
-  const deleteListItem = (index) => {
-    const newTodoList = [...todoList];
-    newTodoList.splice(index, 1);
+
+  const handleTaskCompletion = (id) => {
+    const updatedTodo = todoList.map((todoObj) => {
+      return todoObj.id === id
+        ? { ...todoObj, isCompleted: !todoObj.isCompleted }
+        : todoObj;
+    });
+    setTodoList(updatedTodo);
+  };
+
+  const deleteListItem = (id) => {
+    const newTodoList = todoList.filter((listObj) => listObj.id !== id);
     setTodoList([...newTodoList]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+  }, [todoList]);
 
   return (
     <div className="container">
       <TodoInput addToList={addToList} />
       <div className="list-container">
-        {todoList.map((listItem, index) => {
+        {todoList.map((listItemObj) => {
           return (
             <TodoListItem
-              key={index}
-              index={index}
-              item={listItem}
+              key={listItemObj?.id}
+              id={listItemObj?.id}
+              listText={listItemObj?.text}
+              isCompleted={listItemObj?.isCompleted}
+              handleTaskCompletion={handleTaskCompletion}
               deleteListItem={deleteListItem}
             />
           );
