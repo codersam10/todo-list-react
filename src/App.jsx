@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import TodoInput from "./components/TodoInput";
-import TodoList from "./components/TodoList";
+import TodoListItem from "./components/TodoListItem";
 import { Flip, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,22 +17,23 @@ const App = () => {
           pauseOnHover: true,
           draggable: true,
           theme: "light",
-          transition: Flip
+          transition: Flip,
         })
-      : setTodoList([...todoList, listItem]);
+      : setTodoList((oldTasks) => [...oldTasks, listItem]);
   };
   const deleteListItem = (index) => {
     const newTodoList = [...todoList];
     newTodoList.splice(index, 1);
     setTodoList([...newTodoList]);
   };
+
   return (
     <div className="container">
       <TodoInput addToList={addToList} />
       <div className="list-container">
         {todoList.map((listItem, index) => {
           return (
-            <TodoList
+            <TodoListItem
               key={index}
               index={index}
               item={listItem}

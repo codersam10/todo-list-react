@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  align-items:start;
+  align-items: start;
   padding: 1.5rem;
   min-height: 100svh;
 }
@@ -47,7 +47,6 @@ h1 {
   border: none;
   font-size: inherit;
   word-break: break-all;
-
 }
 
 .add-btn {
@@ -66,10 +65,10 @@ h1 {
 .add-btn:active {
   background-color: hsl(26, 100%, 40%);
 }
-.list-container{
+.list-container {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .list-item {
@@ -85,8 +84,13 @@ h1 {
   padding: 0.5rem 1rem;
 }
 
-.list-item span:hover{
- color: hsl(0, 100%, 70%);
+.list-text{
+  flex-grow: 1;
+  text-align: left;
+}
+
+.delete-icon :hover {
+  color: hsl(0, 100%, 70%);
 }
 
 @media screen and (max-width: 700px) {
