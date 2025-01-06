@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import TodoInput from "./components/TodoInput";
 import TodoListItem from "./components/TodoListItem";
@@ -26,6 +26,14 @@ const App = () => {
     newTodoList.splice(index, 1);
     setTodoList([...newTodoList]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+  }, [todoList]);
+
+  useEffect(() => {
+    setTodoList(JSON.parse(localStorage.getItem("todoList")));
+  }, []);
 
   return (
     <div className="container">
