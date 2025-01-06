@@ -29,7 +29,7 @@ const TodoInput = ({ addToList }) => {
   };
 
   return (
-    <div>
+    <>
       <h1>Todo List</h1>
       <form className="input-container">
         <input
@@ -55,7 +55,7 @@ const TodoInput = ({ addToList }) => {
         </button>
         <ToastContainer />
       </form>
-    </div>
+    </>
   );
 };
 
