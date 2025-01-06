@@ -2,30 +2,22 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import TodoInput from "./components/TodoInput";
 import TodoListItem from "./components/TodoListItem";
-import { Flip, toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { v4 } from "uuid";
 
 const App = () => {
   const [todoList, setTodoList] = useState(
     JSON.parse(localStorage.getItem("todoList")) || []
   );
-  const addToList = (listItem) => {
-    listItem === ""
-      ? toast.warn("Please enter a task!", {
-          position: "top-center",
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "light",
-          transition: Flip,
-        })
-      : setTodoList((oldTasks) => [
-          ...oldTasks,
-          { id: v4(), text: listItem, isCompleted: false },
-        ]);
+  const addToList = (listItemTitle, listItemDescrption) => {
+    setTodoList((oldTasks) => [
+      ...oldTasks,
+      {
+        id: v4(),
+        title: listItemTitle,
+        description: listItemDescrption,
+        isCompleted: false,
+      },
+    ]);
   };
 
   const handleTaskCompletion = (id) => {
@@ -55,14 +47,14 @@ const App = () => {
             <TodoListItem
               key={listItemObj?.id}
               id={listItemObj?.id}
-              listText={listItemObj?.text}
+              title={listItemObj?.title}
+              description={listItemObj?.description}
               isCompleted={listItemObj?.isCompleted}
               handleTaskCompletion={handleTaskCompletion}
               deleteListItem={deleteListItem}
             />
           );
         })}
-        <ToastContainer />
       </div>
     </div>
   );

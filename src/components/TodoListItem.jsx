@@ -1,30 +1,50 @@
 function TodoListItem({
   id,
-  listText,
+  title,
+  description,
   isCompleted,
   handleTaskCompletion,
   deleteListItem,
 }) {
   const styles = isCompleted
-    ? { textDecoration: "line-through", color: "hsla(0, 0%, 100%, 0.3)" }
+    ? {
+        textDecoration: "line-through",
+        color: "hsla(0, 0%, 100%, 0.3)",
+      }
     : {};
 
   return (
-    <li className="list-item">
+    <li
+      className="list-item"
+      tabIndex={0}
+    >
       <div
         className="list-text-container"
-        onClick={() => {
+        onDoubleClick={() => {
           handleTaskCompletion(id);
         }}
       >
-        <span
-          className="list-text"
+        <div
+          className="list-title"
           style={styles}
         >
-          {listText}
-        </span>
-        {isCompleted && (
-          <span className="task-completed-text">Task Completed!</span>
+          {title}
+          <div className="list-description">{description}</div>
+        </div>
+        {isCompleted ? (
+          <span
+            className="task-completed-text"
+            title="Double tap to mark as incomplete"
+          >
+            Task Completed!
+          </span>
+        ) : (
+          <span
+            className="task-not-completed-text"
+            title="Double tap to mark as completed"
+          >
+            Task Pending!
+          </span>
         )}
       </div>
 

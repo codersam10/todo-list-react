@@ -1,41 +1,60 @@
-import React, { useState } from "react";
+import { useRef } from "react";
+import { Flip, toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TodoInput = ({ addToList }) => {
-  const [inputText, setInputText] = useState("");
-  const handleInput = (event) => {
-    setInputText(event.target.value);
-  };
-  const handleEnterPress = (e) => {
-    if (e.key === "Enter") {
-      addToList(inputText);
-      setInputText("");
+  const titleInputRef = useRef(null);
+  const descriptionInputRef = useRef(null);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      titleInputRef.current.value === "" ||
+      descriptionInputRef.current.value === ""
+    ) {
+      toast.warn("Please enter task Title and Description!", {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Flip,
+      });
+    } else {
+      addToList(titleInputRef.current.value, descriptionInputRef.current.value);
+      titleInputRef.current.value = "";
+      descriptionInputRef.current.value = "";
     }
   };
 
   return (
     <div>
       <h1>Todo List</h1>
-      <div className="input-container">
+      <form className="input-container">
         <input
-          id="input-box"
-          onInput={handleInput}
-          onKeyDown={handleEnterPress}
-          value={inputText}
+          id="title-input-box"
           type="text"
-          placeholder="Enter task"
+          placeholder="Enter task title"
+          ref={titleInputRef}
+          autoFocus
+        />
+        <input
+          id="description-input-box"
+          type="text"
+          placeholder="Enter task description"
+          ref={descriptionInputRef}
         />
         <button
           className="add-btn"
-          onClick={(e) => {
-            addToList(inputText);
-            setInputText("");
-          }}
-          type="button"
+          onClick={handleSubmit}
+          type="submit"
           aria-label="Add task"
         >
-          <i className="fa-solid fa-plus"></i>
+          Add Task
         </button>
-      </div>
+        <ToastContainer />
+      </form>
     </div>
   );
 };

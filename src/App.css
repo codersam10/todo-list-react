@@ -7,6 +7,10 @@
   font-style: normal;
 }
 
+*:focus {
+  outline: 4px solid black;
+}
+
 #root {
   background-color: hsl(0, 0%, 86%);
   display: flex;
@@ -21,8 +25,7 @@
   background-color: hsl(219, 6%, 44%);
   border-radius: 1rem;
   padding: 1.5rem;
-  width: 55%;
-  text-align: center;
+  width: 65%;
 }
 
 .input-container {
@@ -35,11 +38,13 @@
 
 h1 {
   color: hsl(220, 8%, 23%);
-  font-weight: 400;
   font-style: normal;
+  font-size: 2rem;
+  font-weight: 900;
 }
 
-#input-box {
+#title-input-box,
+#description-input-box {
   min-width: 0;
   flex-grow: 1;
   padding: 0.8rem;
@@ -50,16 +55,14 @@ h1 {
 }
 
 .add-btn {
-  text-align: center;
-  width: 3rem;
-  height: 3rem;
+  padding: 1rem;
   flex-shrink: 0;
   background-color: hsl(26, 100%, 43%);
   color: hsl(0, 0%, 100%);
-  box-shadow: none;
   border-radius: 50px;
   border: none;
   font-size: inherit;
+  font-weight: 400;
 }
 
 .add-btn:active {
@@ -74,7 +77,6 @@ h1 {
 .list-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 1rem;
   word-break: break-all;
   background-color: hsl(220, 8%, 23%);
@@ -87,12 +89,39 @@ h1 {
 .list-text-container {
   flex-grow: 1;
   display: flex;
+  gap: 0.5rem;
 }
 
-.list-text {
+.list-title {
   flex-grow: 1;
-  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+  color: hsl(26, 100%, 43%);
 }
+
+.list-description {
+  flex-grow: 1;
+  interpolate-size: allow-keywords;
+  height: 0;
+  padding: 0;
+  will-change: height, padding;
+  transition-property: height, padding;
+  transition-duration: 1s;
+  overflow: hidden;
+  background-color: hsl(220, 8%, 15%);
+  border-radius: 0.3rem;
+  margin-top: 0.5rem;
+  color: hsl(0, 0%, 47%);
+}
+
+.list-item:hover .list-description,
+.list-item:focus .list-description {
+  padding: 0.5rem;
+  transition-duration: 300ms;
+  transition-timing-function: ease-out;
+  height: auto;
+}
+
 .task-completed-text {
   display: grid;
   place-content: center;
@@ -102,7 +131,17 @@ h1 {
   color: hsl(113, 97%, 35%);
 }
 
+.task-not-completed-text {
+  display: grid;
+  place-content: center;
+  text-wrap: nowrap;
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: hsl(0, 97%, 35%);
+}
+
 .delete-icon-wrapper {
+  flex-shrink: 0;
   width: 2rem;
   height: 2rem;
   padding: auto;
@@ -121,21 +160,20 @@ h1 {
   color: hsl(0, 100%, 70%);
 }
 
-.delete-icon-wrapper:hover{
+.delete-icon-wrapper:hover {
   background-color: hsl(0, 0%, 85%);
 }
 
 /* small screens */
 @media screen and (max-width: 700px) {
   .container {
-    width: 100%
+    width: 100%;
   }
 }
 
 /* mediun screens */
 @media screen and (max-width: 769px) {
   .container {
-    width: 100%
+    width: 100%;
   }
 }
-
