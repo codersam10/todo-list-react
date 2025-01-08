@@ -6,9 +6,9 @@
   --light-background-color: hsl(0, 0%, 80%);
 
   /* dark theme */
-  --dark-primary-color: #181c14;
-  --dark-secondary-color: #3c3d37;
-  --dark-accent-color: #697565;
+  --dark-primary-color: hsl(0, 0%, 100%);
+  --dark-secondary-color: hsl(70, 5%, 23%);
+  --dark-accent-color: hsl(105, 7%, 43%);
   --dark-background-color: hsl(210, 29%, 24%);
 }
 
@@ -165,6 +165,13 @@ h1 {
   h1 {
     color: var(--light-primary-color);
   }
+  input{
+    background-color: var(--light-accent-color);
+  }
+  input::placeholder{
+    color: var(--light-primary-color);
+  }
+
   .add-btn {
     background-color: var(--light-accent-color);
     color: var(--light-primary-color);
@@ -202,6 +209,12 @@ h1 {
     background-color: var(--dark-secondary-color);
   }
   h1 {
+    color: var(--dark-primary-color);
+  }
+  input{
+    background-color: var(--dark-accent-color);
+  }
+  input::placeholder{
     color: var(--dark-primary-color);
   }
   .add-btn {
