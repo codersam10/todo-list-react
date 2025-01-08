@@ -1,3 +1,5 @@
+import { Flip, toast } from "react-toastify";
+
 function TodoListItem({
   id,
   title,
@@ -9,7 +11,7 @@ function TodoListItem({
   const styles = isCompleted
     ? {
         textDecoration: "line-through",
-        }
+      }
     : {};
 
   return (
@@ -25,15 +27,8 @@ function TodoListItem({
           handleTaskCompletion(id);
         }}
       >
-        <div
-          className="list-title"
-          
-        >
-          {title}
-        </div>
-        <div className="list-description">
-          {description}
-        </div>
+        <div className="list-title">{title}</div>
+        <div className="list-description">{description}</div>
       </div>
 
       <span
@@ -52,7 +47,9 @@ function TodoListItem({
         onClick={() => {
           handleTaskCompletion(id);
         }}
-        style={isCompleted ? { color: "hsl(125, 100.00%, 50.00%)" } : { color: "" }}
+        style={
+          isCompleted ? { color: "hsl(125, 100.00%, 50.00%)" } : { color: "" }
+        }
       >
         <i className="fa fa-check"></i>
       </span>
@@ -61,8 +58,17 @@ function TodoListItem({
         className="options-icon-wrapper"
         title="Copy to clipboard"
         onClick={() => {
-          window.navigator.clipboard.writeText(`${title}:
-${description}`);
+          window.navigator.clipboard.writeText(`${title}:\n${description}`);
+          toast.success("Copied to clipboard", {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "light",
+            transition: Flip,
+          });
         }}
       >
         <i className="fa fa-clone"></i>
