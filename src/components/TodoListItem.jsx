@@ -20,13 +20,14 @@ function TodoListItem({
     >
       <div
         className="list-text-container"
+        style={styles}
         onDoubleClick={() => {
           handleTaskCompletion(id);
         }}
       >
         <div
           className="list-title"
-          style={styles}
+          
         >
           {title}
         </div>

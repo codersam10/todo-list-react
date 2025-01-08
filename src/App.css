@@ -3,12 +3,12 @@
   --light-primary-color: hsl(248, 100%, 68%);
   --light-secondary-color: hsl(79, 41%, 86%);
   --light-accent-color: hsl(263, 100%, 97%);
-  --light-background-color: hsl(0, 0%, 80%);
+  --light-background-color: hsl(0, 0%, 85%);
 
   /* dark theme */
-  --dark-primary-color: #181c14;
-  --dark-secondary-color: #3c3d37;
-  --dark-accent-color: #697565;
+  --dark-primary-color: hsl(0, 0%, 100%);
+  --dark-secondary-color: hsl(70, 5%, 23%);
+  --dark-accent-color: hsl(105, 7%, 43%);
   --dark-background-color: hsl(210, 29%, 24%);
 }
 
@@ -165,6 +165,13 @@ h1 {
   h1 {
     color: var(--light-primary-color);
   }
+  input{
+    background-color: var(--light-accent-color);
+  }
+  input::placeholder{
+    color: var(--light-primary-color);
+  }
+
   .add-btn {
     background-color: var(--light-accent-color);
     color: var(--light-primary-color);
@@ -173,11 +180,11 @@ h1 {
     background-color: var(--light-secondary-color);
   }
   .list-item {
-    background-color: var(--light-secondary-color);
+    background-color: var(--light-accent-color);
     color: var(--light-primary-color);
   }
   .options-icon-wrapper {
-    background-color: var(--light-accent-color);
+    background-color: var(--light-background-color);
   }
   .list-title {
     color: var(--light-primary-color);
@@ -204,6 +211,12 @@ h1 {
   h1 {
     color: var(--dark-primary-color);
   }
+  input{
+    background-color: var(--dark-accent-color);
+  }
+  input::placeholder{
+    color: var(--dark-primary-color);
+  }
   .add-btn {
     background-color: var(--dark-accent-color);
     color: var(--dark-primary-color);
@@ -212,11 +225,11 @@ h1 {
     background-color: var(--dark-secondary-color);
   }
   .list-item {
-    background-color: var(--dark-secondary-color);
+    background-color: var(--dark-accent-color);
     color: var(--dark-primary-color);
   }
   .options-icon-wrapper {
-    background-color: var(--dark-accent-color);
+    background-color: var(--dark-background-color);
   }
   .list-title {
     color: var(--dark-primary-color);
