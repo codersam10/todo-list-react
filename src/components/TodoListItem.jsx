@@ -9,14 +9,14 @@ function TodoListItem({
   const styles = isCompleted
     ? {
         textDecoration: "line-through",
-        color: "hsla(0, 0%, 100%, 0.3)",
-      }
+        }
     : {};
 
   return (
     <li
       className="list-item"
       tabIndex={0}
+      style={isCompleted ? { opacity: "0.6" } : { opacity: "1" }}
     >
       <div
         className="list-text-container"
@@ -29,32 +29,42 @@ function TodoListItem({
           style={styles}
         >
           {title}
-          <div className="list-description">{description}</div>
         </div>
-        {isCompleted ? (
-          <span
-            className="task-completed-text"
-            title="Double tap to mark as incomplete"
-          >
-            Task Completed!
-          </span>
-        ) : (
-          <span
-            className="task-not-completed-text"
-            title="Double tap to mark as completed"
-          >
-            Task Pending!
-          </span>
-        )}
+        <div className="list-description">
+          {description}
+        </div>
       </div>
 
       <span
-        className="delete-icon-wrapper"
+        className="options-icon-wrapper"
+        title="Delete"
         onClick={() => {
           deleteListItem(id);
         }}
       >
         <i className="fa-solid fa-trash delete-icon"></i>
+      </span>
+
+      <span
+        className="options-icon-wrapper"
+        title="Mark as completed"
+        onClick={() => {
+          handleTaskCompletion(id);
+        }}
+        style={isCompleted ? { color: "hsl(125, 100.00%, 50.00%)" } : { color: "" }}
+      >
+        <i className="fa fa-check"></i>
+      </span>
+
+      <span
+        className="options-icon-wrapper"
+        title="Copy to clipboard"
+        onClick={() => {
+          window.navigator.clipboard.writeText(`${title}:
+${description}`);
+        }}
+      >
+        <i className="fa fa-clone"></i>
       </span>
     </li>
   );
