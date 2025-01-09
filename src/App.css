@@ -165,10 +165,11 @@ h1 {
   h1 {
     color: var(--light-primary-color);
   }
-  input{
+  input {
     background-color: var(--light-accent-color);
+    color: var(--light-primary-color);
   }
-  input::placeholder{
+  input::placeholder {
     color: var(--light-primary-color);
   }
 
@@ -211,10 +212,12 @@ h1 {
   h1 {
     color: var(--dark-primary-color);
   }
-  input{
+  input {
     background-color: var(--dark-accent-color);
+    color: var(--dark-primary-color);
+
   }
-  input::placeholder{
+  input::placeholder {
     color: var(--dark-primary-color);
   }
   .add-btn {
@@ -237,5 +240,5 @@ h1 {
   .list-description {
     color: var(--dark-primary-color);
     background-color: var(--dark-accent-color);
-  } 
+  }
 }
