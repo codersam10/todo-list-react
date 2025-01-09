@@ -43,7 +43,7 @@ function TodoListItem({
 
       <span
         className="options-icon-wrapper"
-        title="Mark as completed"
+        title={isCompleted ? "Mark as incomplete" : "Mark as completed"}
         onClick={() => {
           handleTaskCompletion(id);
         }}
