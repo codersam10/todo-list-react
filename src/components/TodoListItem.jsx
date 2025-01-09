@@ -31,18 +31,20 @@ function TodoListItem({
         <div className="list-description">{description}</div>
       </div>
 
-      <span
+      <button
         className="options-icon-wrapper"
+        aria-label="Delete"
         title="Delete"
         onClick={() => {
           deleteListItem(id);
         }}
       >
         <i className="fa-solid fa-trash delete-icon"></i>
-      </span>
+      </button>
 
-      <span
+      <button
         className="options-icon-wrapper"
+        aria-label={isCompleted ? "Mark as incomplete" : "Mark as completed"}
         title={isCompleted ? "Mark as incomplete" : "Mark as completed"}
         onClick={() => {
           handleTaskCompletion(id);
@@ -52,10 +54,11 @@ function TodoListItem({
         }
       >
         <i className="fa fa-check"></i>
-      </span>
+      </button>
 
-      <span
+      <button
         className="options-icon-wrapper"
+        aria-label="Copy task to clipboard"
         title="Copy to clipboard"
         onClick={() => {
           window.navigator.clipboard.writeText(`${title}:\n${description}`);
@@ -72,7 +75,7 @@ function TodoListItem({
         }}
       >
         <i className="fa fa-clone"></i>
-      </span>
+      </button>
     </li>
   );
 }
