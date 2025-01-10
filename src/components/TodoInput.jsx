@@ -35,6 +35,8 @@ const TodoInput = ({ addToList }) => {
         <input
           id="title-input-box"
           type="text"
+          name="title"
+          aria-label="Enter task title"
           placeholder="Enter task title"
           ref={titleInputRef}
           autoFocus
@@ -42,6 +44,8 @@ const TodoInput = ({ addToList }) => {
         <input
           id="description-input-box"
           type="text"
+          name="description"
+          aria-label="Enter task description"
           placeholder="Enter task description"
           ref={descriptionInputRef}
         />
