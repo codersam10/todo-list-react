@@ -187,6 +187,7 @@ h1 {
   }
   .options-icon-wrapper {
     background-color: var(--light-background-color);
+    color: var(--light-primary-color);
   }
   .list-title {
     color: var(--light-primary-color);
@@ -234,6 +235,7 @@ h1 {
   }
   .options-icon-wrapper {
     background-color: var(--dark-background-color);
+    color: var(--dark-primary-color);
   }
   .list-title {
     color: var(--dark-primary-color);
