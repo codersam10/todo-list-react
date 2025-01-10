@@ -23,17 +23,20 @@
 
 #root {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  align-items: start;
   padding: 1.5rem;
-  min-height: 100svh;
+  height: 100svh;
 }
 
 .container {
+  flex-grow: 1;
   border-radius: 1rem;
   padding: 1.5rem;
   width: 65%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .input-container {
@@ -74,6 +77,9 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
 }
 
 .list-item {
@@ -140,7 +146,7 @@ h1 {
   }
 }
 
-/* mediun screens */
+/* medium screens */
 @media screen and (max-width: 769px) {
   .container {
     width: 100%;
@@ -152,10 +158,23 @@ h1 {
 
 /* light mode */
 @media (prefers-color-scheme: light) {
+  /* scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px grey;
+    background-color: var(--light-accent-color);
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--light-primary-color);
+    border-radius: 10px;
+  }
+
   *:focus {
     outline: 4px solid var(--light-primary-color);
   }
-
   #root {
     background-color: var(--light-background-color);
     color: var(--light-primary-color);
@@ -200,6 +219,21 @@ h1 {
 
 /* dark mode */
 @media (prefers-color-scheme: dark) {
+
+    /* scrollbar styles */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 2px grey;
+      background-color: var(--dark-accent-color);
+      border-radius: 50px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--dark-primary-color);
+      border-radius: 10px;
+    }
+  
   *:focus {
     outline: 4px solid var(--dark-primary-color);
   }
@@ -217,7 +251,6 @@ h1 {
   input {
     background-color: var(--dark-accent-color);
     color: var(--dark-primary-color);
-
   }
   input::placeholder {
     color: var(--dark-primary-color);
