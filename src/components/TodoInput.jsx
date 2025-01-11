@@ -31,7 +31,10 @@ const TodoInput = ({ addToList }) => {
   return (
     <>
       <h1>Todo List</h1>
-      <form className="input-container">
+      <form
+        className="input-container"
+        onSubmit={handleSubmit}
+      >
         <input
           id="title-input-box"
           type="text"
@@ -51,7 +54,6 @@ const TodoInput = ({ addToList }) => {
         />
         <button
           className="add-btn"
-          onClick={handleSubmit}
           type="submit"
           aria-label="Add task"
         >
