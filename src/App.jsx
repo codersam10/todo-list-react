@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import TodoInput from "./components/TodoInput";
 import TodoListItem from "./components/TodoListItem";
@@ -8,6 +8,48 @@ const App = () => {
   const [todoList, setTodoList] = useState(
     JSON.parse(localStorage.getItem("todoList")) || []
   );
+
+  const [editIdTitle, setEditIdTitle] = React.useState(null);
+  const [editIdDescription, setEditIdDescription] = React.useState(null);
+  const [editText, setEditText] = React.useState("");
+
+  const handleTextClick = (event, id, text) => {
+    if (event.target.className === "list-title") {
+      setEditIdTitle(id);
+    } else {
+      setEditIdDescription(id);
+    }
+
+    setEditText(text);
+  };
+
+  const handleInputChange = (event) => {
+    setEditText(event.target.value);
+  };
+
+  const handleInputBlur = (e) => {
+    if (e.target.className === "list-title") {
+      setTodoList(
+        todoList.map((todo) =>
+          todo.id === editIdTitle ? { ...todo, title: editText } : todo
+        )
+      );
+      setEditIdTitle(null);
+      setEditText("");
+      return;
+    }
+
+    setTodoList(
+      todoList.map((todo) =>
+        todo.id === editIdDescription
+          ? { ...todo, description: editText }
+          : todo
+      )
+    );
+    setEditIdDescription(null);
+    setEditText("");
+  };
+
   const addToList = (listItemTitle, listItemDescrption) => {
     setTodoList((oldTasks) => [
       ...oldTasks,
@@ -41,7 +83,7 @@ const App = () => {
   return (
     <div className="container">
       <TodoInput addToList={addToList} />
-      <div className="list-container">
+      <ul className="list-container">
         {todoList.map((listItemObj) => {
           return (
             <TodoListItem
@@ -52,10 +94,16 @@ const App = () => {
               isCompleted={listItemObj?.isCompleted}
               handleTaskCompletion={handleTaskCompletion}
               deleteListItem={deleteListItem}
+              editIdTitle={editIdTitle}
+              editIdDescription={editIdDescription}
+              editText={editText}
+              handleTextClick={handleTextClick}
+              handleInputChange={handleInputChange}
+              handleInputBlur={handleInputBlur}
             />
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };

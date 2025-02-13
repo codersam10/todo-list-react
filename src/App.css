@@ -1,6 +1,6 @@
 :root {
   /* light theme */
-  --light-primary-color: hsl(248, 100%, 68%);
+  --light-primary-color: hsl(248deg 47% 47%);
   --light-secondary-color: hsl(79, 41%, 86%);
   --light-accent-color: hsl(263, 100%, 97%);
   --light-background-color: hsl(0, 0%, 85%);
@@ -84,50 +84,54 @@ h1 {
 
 .list-item {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: 0.5rem;
   word-break: break-all;
-  list-style: none;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
 }
 
-.list-text-container {
-  flex-grow: 1;
+.show-hide-description {
+  border: none;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  padding: auto;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: inherit;
+}
+
+.list-text {
   display: flex;
   flex-direction: column;
-  /* gap: 0.5rem;  */
+  flex-grow: 1;
+  gap: 0.5rem;
 }
 
 .list-title {
-  flex-grow: 1;
   font-size: 1rem;
   font-weight: 600;
   display: grid;
   align-content: center;
+  border: none;
+  border-radius: 0.2rem;
+  flex-grow: 1;
 }
 
 .list-description {
-  flex-grow: 1;
-  interpolate-size: allow-keywords;
-  height: 0;
-  padding: 0;
-  will-change: height, padding, display;
-  transition-property: height, padding;
-  transition-duration: 1s;
-  overflow: hidden;
-  border-radius: 0.3rem;
+  width: 100%;
+  font-size: inherit;
+  min-height: 150px;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0.2rem;
+  resize: none;
 }
 
-.list-item:hover .list-description,
-.list-item:focus .list-description {
-  padding: 0.5rem;
-  transition-duration: 300ms;
-  transition-timing-function: ease-out;
-  height: auto;
-}
-
-.options-icon-wrapper {
+.option-icon {
   border: none;
   flex-shrink: 0;
   width: 2rem;
@@ -141,11 +145,14 @@ h1 {
 
 /* small screens */
 @media screen and (max-width: 700px) {
-  #root{
+  #root {
     padding: 0;
   }
   .container {
     border-radius: 0px;
+  }
+  .list-item {
+    gap: 0.5rem;
   }
 }
 
@@ -188,11 +195,13 @@ h1 {
   h1 {
     color: var(--light-primary-color);
   }
-  input {
+  #title-input-box,
+  #description-input-box {
     background-color: var(--light-accent-color);
     color: var(--light-primary-color);
   }
-  input::placeholder {
+  #title-input-box::placeholder,
+  #description-input-box::placeholder {
     color: var(--light-primary-color);
   }
 
@@ -207,12 +216,17 @@ h1 {
     background-color: var(--light-accent-color);
     color: var(--light-primary-color);
   }
-  .options-icon-wrapper {
+  .option-icon {
     background-color: var(--light-background-color);
     color: var(--light-primary-color);
   }
+  .show-hide-description {
+    color: var(--light-primary-color);
+  }
+
   .list-title {
     color: var(--light-primary-color);
+    background-color: var(--light-accent-color);
   }
   .list-description {
     color: var(--light-primary-color);
@@ -222,21 +236,20 @@ h1 {
 
 /* dark mode */
 @media (prefers-color-scheme: dark) {
+  /* scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px grey;
+    background-color: var(--dark-accent-color);
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--dark-primary-color);
+    border-radius: 10px;
+  }
 
-    /* scrollbar styles */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 2px grey;
-      background-color: var(--dark-accent-color);
-      border-radius: 50px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--dark-primary-color);
-      border-radius: 10px;
-    }
-  
   *:focus {
     outline: 4px solid var(--dark-primary-color);
   }
@@ -251,11 +264,13 @@ h1 {
   h1 {
     color: var(--dark-primary-color);
   }
-  input {
+  #title-input-box,
+  #description-input-box {
     background-color: var(--dark-accent-color);
     color: var(--dark-primary-color);
   }
-  input::placeholder {
+  #title-input-box::placeholder,
+  #description-input-box::placeholder {
     color: var(--dark-primary-color);
   }
   .add-btn {
@@ -269,12 +284,16 @@ h1 {
     background-color: var(--dark-accent-color);
     color: var(--dark-primary-color);
   }
-  .options-icon-wrapper {
+  .option-icon {
     background-color: var(--dark-background-color);
+    color: var(--dark-primary-color);
+  }
+  .show-hide-description {
     color: var(--dark-primary-color);
   }
   .list-title {
     color: var(--dark-primary-color);
+    background-color: var(--dark-accent-color);
   }
   .list-description {
     color: var(--dark-primary-color);
